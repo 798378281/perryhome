@@ -1,7 +1,7 @@
 {
   "defaultSeverity": "warning",
   "extends": [
-    "tslint:recommended"
+    "tslint-config-alloy"
   ],
   "linterOptions": {
     "exclude": [
@@ -14,6 +14,13 @@
     "interface-name": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-consecutive-blank-lines": false
+		"no-consecutive-blank-lines": false,
+		"linebreak-style": false,
+		"no-implicit-dependencies": [
+			true,
+			["@/api", "@/assets", "@/components", "@/config", "@/consts",  "@/styles", "@/views", "@/utils", "@/types", "@/store", "@/router", "@/apps", "@/modules", "@/mixins"]
+    ],
+    "semicolon": false,
+    "trailing-comma": false
   }
 }
