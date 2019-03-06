@@ -1,23 +1,68 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from '@/views/Home.vue'
+import Vue from 'vue'
+import Router from 'vue-router'
+import * as RouteName from './route-name'
 
-Vue.use(Router);
+
+const Auth = () => import(/* webpackChunkName: "auth" */ '../views/auth/index.vue')
+const Login = () => import(/* webpackChunkName: "auth" */ '../views/auth/login.vue')
+
+const Apps = () => import(/* webpackChunkName: "apps" */ '../views/apps/index.vue')
+
+const JournalList = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/list.vue')
+const JournalForm = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/form.vue')
+const JournalDetails = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/details.vue')
+
+
+Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: RouteName.HOME,
+      redirect: { name: RouteName.LOGIN },
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
+      path: '/auth',
+      name: RouteName.AUTH,
+      component: Auth,
+      redirect: { name: RouteName.LOGIN },
+      children: [
+        {
+          path: 'login',
+          name: RouteName.LOGIN,
+          component: Login
+        }
+      ]
     },
+    {
+      path: '/apps',
+      name: RouteName.APPS,
+      component: Apps,
+      children: [
+        {
+          path: 'journal',
+          name: RouteName.JOURNAL_LIST,
+          component: JournalList
+        },
+        {
+          path: 'journal/add',
+          name: RouteName.JOURNAL_FORM,
+          component: JournalForm
+        },
+        {
+          path: 'journal/edit/:id',
+          name: RouteName.JOURNAL_FORM,
+          props: true,
+          component: JournalForm
+        },
+        {
+          path: 'journal/details/:id',
+          name: RouteName.JOURNAL_DETAIL,
+          props: true,
+          component: JournalDetails
+        }
+      ]
+    }
   ]
-});
+})

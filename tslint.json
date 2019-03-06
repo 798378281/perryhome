@@ -13,12 +13,15 @@
     "indent": [true, "spaces", 2],
     "interface-name": false,
     "ordered-imports": false,
+    "no-trailing-whitespace":false,
     "object-literal-sort-keys": false,
-		"no-consecutive-blank-lines": false,
-		"linebreak-style": false,
+    "no-consecutive-blank-lines": false,
+    "no-import-side-effect": false,
+    "linebreak-style": false,
+    "member-access": false,
 		"no-implicit-dependencies": [
 			true,
-			["@/api", "@/assets", "@/components", "@/config", "@/consts",  "@/styles", "@/views", "@/utils", "@/types", "@/store", "@/router", "@/apps", "@/modules", "@/mixins"]
+			["@/api", "@/assets", "@/components", "@/config", "@/consts",  "@/styles", "@/views", "@/utils", "@/types", "@/store", "@/routes", "@/apps", "@/modules", "@/mixins"]
     ],
     "semicolon": false,
     "trailing-comma": false
