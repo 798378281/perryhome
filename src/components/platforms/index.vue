@@ -2,7 +2,6 @@
   <div class="platforms">
     <header class="topbar">
       <div class="topbar__logo">
-        Logo
       </div>
       <div class="topbar__nav">
         <div
@@ -38,7 +37,7 @@ export default class Platform extends Vue {
 <style lang="stylus" scoped>
 .platforms
   height 100%
-  padding-top 50px
+  padding-top 80px
   box-sizing border-box
   position relative
   .topbar
@@ -46,24 +45,25 @@ export default class Platform extends Vue {
     left 0
     top 0
     width 100%
-    height 50px
+    height 80px
     background-color #ffffff
     box-shadow 0 1px 2px 0 rgba(0,0,0,0.06)
     z-index 11
     &__logo
       width 200px
       height 100%
-      background-color #CCCCCC
+      background-color #ffffff
       float left
       text-align center
       line-height 50px
+      background-image url('~@/assets/logo.png')
     &__nav
       width 60%
       height 100%
       float left
       margin-left 5px
       display flex
-      line-height 50px
+      line-height 80px
       &__item
         box-sizing border-box
         cursor pointer
@@ -78,7 +78,7 @@ export default class Platform extends Vue {
   .main
     position absolute
     left 0
-    top 50px
+    top 80px
     right 0
     bottom 0
     box-sizing border-box

@@ -9,8 +9,6 @@ import '@/styles/index.styl'
 
 import Platform from '@/components/platforms/index.vue'
 
-
-
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
