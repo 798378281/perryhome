@@ -53,7 +53,9 @@ export default class Media extends Vue {
 .media
   overflow: hidden
   zoom: 1
-  margin-top 10px
+  margin-top: 10px
+  padding: 15px 2px 20px 0
+  border-bottom: 1px solid #f0f0f0
   &:first-child
     margin-top 0px
   &__body,
@@ -63,11 +65,16 @@ export default class Media extends Vue {
   &__left
     padding-right: 10px
   &__body
-    font-size 12px
+    font-size: 12px
+    color: #999
+    line-height: 24px
   &__heading
     margin-top: 0
     margin-bottom: 5px
-    font-size: 16px
+    font-size: 18px
+    line-height 1.5
+    font-weight 700
+    color #333
 
 .tag-bar
   padding 5px 0px

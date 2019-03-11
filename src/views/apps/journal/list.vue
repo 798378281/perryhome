@@ -9,8 +9,8 @@
         </div>
         <div class="panel__body">
           <Media
-            title="这个是标题"
-            content="这个是内容............"
+            title="你只管写就是了，剩下的交给时间"
+            content="午夜刚过，我也刚关掉电脑钻进被窝。 小时候就喜欢写点东西，慢慢的就养成了写日记的习惯，每天要不写点什么，感觉一天没完整的结束一样"
             :tags="['1123', '1123', '1123', '1123', '1123', '1123']">
             <div class="img"></div>
           </Media>
@@ -26,15 +26,12 @@
             title="这个是标题"
             content="这个是内容............"
             :tags="['1123', '1123', '1123', '1123', '1123', '1123']">
-            <div class="img"></div>
           </Media>
         </div>
 
-        <div class="panel__footer">
-          <el-pagination
-            :total="50"
-            layout="prev, pager, next" />
-        </div>
+        <el-pagination
+          :total="50"
+          layout="prev, pager, next" />
       </div>
     </div>
   </div>
@@ -59,8 +56,8 @@ export default class JournalList extends Vue {
 <style lang="stylus" scoped>
 
 .img
-  width 80px
-  height 80px
+  width 150px
+  height 100px
   border 1px solid #ccc
 </style>
 
