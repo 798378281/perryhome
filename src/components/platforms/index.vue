@@ -37,7 +37,7 @@ export default class Platform extends Vue {
 <style lang="stylus" scoped>
 .platforms
   height 100%
-  padding-top 80px
+  padding-top 50px
   box-sizing border-box
   position relative
   .topbar
@@ -45,25 +45,26 @@ export default class Platform extends Vue {
     left 0
     top 0
     width 100%
-    height 80px
+    height 50px
     background-color #ffffff
     box-shadow 0 1px 2px 0 rgba(0,0,0,0.06)
     z-index 11
     &__logo
       width 200px
       height 100%
-      background-color #ffffff
+      background-color #cccccc
       float left
       text-align center
       line-height 50px
-      background-image url('~@/assets/logo.png')
+      // background-image url('~@/assets/logo.png')
+      // background-size 100% 100%
     &__nav
       width 60%
       height 100%
       float left
       margin-left 5px
       display flex
-      line-height 80px
+      line-height 50px
       &__item
         box-sizing border-box
         cursor pointer
@@ -78,7 +79,7 @@ export default class Platform extends Vue {
   .main
     position absolute
     left 0
-    top 80px
+    top 50px
     right 0
     bottom 0
     box-sizing border-box

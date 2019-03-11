@@ -8,6 +8,7 @@ const Login = () => import(/* webpackChunkName: "auth" */ '../views/auth/login.v
 
 const Apps = () => import(/* webpackChunkName: "apps" */ '../views/apps/index.vue')
 
+const Journal = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/index.vue')
 const JournalList = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/list.vue')
 const JournalForm = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/form.vue')
 const JournalDetails = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/details.vue')
@@ -42,26 +43,33 @@ export default new Router({
       children: [
         {
           path: 'journal',
-          name: RouteName.JOURNAL_LIST,
-          component: JournalList
+          name: RouteName.JOURNAL,
+          component: Journal,
+          children: [
+            {
+              path: 'list',
+              name: RouteName.JOURNAL_LIST,
+              component: JournalList
+            },
+            {
+              path: 'add',
+              name: RouteName.JOURNAL_FORM,
+              component: JournalForm
+            },
+            {
+              path: 'edit/:id',
+              name: RouteName.JOURNAL_FORM,
+              props: true,
+              component: JournalForm
+            },
+            {
+              path: 'details/:id',
+              name: RouteName.JOURNAL_DETAIL,
+              props: true,
+              component: JournalDetails
+            }
+          ]
         },
-        {
-          path: 'journal/add',
-          name: RouteName.JOURNAL_FORM,
-          component: JournalForm
-        },
-        {
-          path: 'journal/edit/:id',
-          name: RouteName.JOURNAL_FORM,
-          props: true,
-          component: JournalForm
-        },
-        {
-          path: 'journal/details/:id',
-          name: RouteName.JOURNAL_DETAIL,
-          props: true,
-          component: JournalDetails
-        }
       ]
     }
   ]

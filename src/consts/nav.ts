@@ -4,7 +4,7 @@ import * as routeName from '@/routes/route-name'
 export default [
   {
     icon: '',
-    name: '菜单1',
+    name: '日志',
     pathName: routeName.JOURNAL_LIST,
   }
 ]
