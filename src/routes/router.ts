@@ -13,6 +13,8 @@ const JournalList = () => import(/* webpackChunkName: "apps" */ '../views/apps/j
 const JournalForm = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/form.vue')
 const JournalDetails = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/details.vue')
 
+const System = () => import(/* webpackChunkName: "apps" */ '../views/apps/system/index.vue')
+const SystemMetaDataList = () => import(/* webpackChunkName: "apps" */ '../views/apps/system/metadata/list.vue')
 
 Vue.use(Router)
 
@@ -59,7 +61,7 @@ export default new Router({
             {
               path: 'edit/:id',
               name: RouteName.JOURNAL_FORM,
-              props: true,
+              // props: true,
               component: JournalForm
             },
             {
@@ -70,6 +72,18 @@ export default new Router({
             }
           ]
         },
+        {
+          path: 'system',
+          name: RouteName.SYSTEM,
+          component: System,
+          children: [
+            {
+              path: 'metadata/list',
+              name: RouteName.SYSTEM_METADATA_LIST,
+              component: SystemMetaDataList
+            }
+          ]
+        }
       ]
     }
   ]
