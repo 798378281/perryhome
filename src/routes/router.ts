@@ -14,7 +14,9 @@ const JournalForm = () => import(/* webpackChunkName: "apps" */ '../views/apps/j
 const JournalDetails = () => import(/* webpackChunkName: "apps" */ '../views/apps/journal/details.vue')
 
 const System = () => import(/* webpackChunkName: "apps" */ '../views/apps/system/index.vue')
-const SystemMetaDataList = () => import(/* webpackChunkName: "apps" */ '../views/apps/system/metadata/list.vue')
+const SystemMetaData = () => import(/* webpackChunkName: "apps" */ '../views/apps/system/metadata/index.vue')
+const SystemMetaDataCategory = () => import(/* webpackChunkName: "apps" */ '../views/apps/system/metadata/category-list.vue')
+const SystemMetaDataTag = () => import(/* webpackChunkName: "apps" */ '../views/apps/system/metadata/tag-list.vue')
 
 Vue.use(Router)
 
@@ -78,9 +80,21 @@ export default new Router({
           component: System,
           children: [
             {
-              path: 'metadata/list',
-              name: RouteName.SYSTEM_METADATA_LIST,
-              component: SystemMetaDataList
+              path: 'metadata',
+              name: RouteName.SYSTEM_METADATA,
+              component: SystemMetaData,
+              children: [
+                {
+                  path: 'category',
+                  name: RouteName.SYSTEM_METADATA_CATEGORY,
+                  component: SystemMetaDataCategory,
+                },
+                {
+                  path: 'tag',
+                  name: RouteName.SYSTEM_METADATA_TAG,
+                  component: SystemMetaDataTag,
+                }
+              ]
             }
           ]
         }
