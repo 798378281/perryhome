@@ -2,11 +2,25 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const journalRoute = require('./route/journal')
-const journalCategory = require('./route/journal-category')
+const category = require('./route/category')
+const logger = require('morgan')
 
+// 跨域中间件
+const allowCors = function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', req.headers.origin)
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  res.header('Access-Control-Allow-Headers', 'Content-Type')
+  res.header('Access-Control-Allow-Credentials','true')
+  next()
+}
+
+app.use(allowCors)
+app.use(logger('dev'))
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/api/', journalRoute)
+app.use('/api/', category)
 // app.use(journalCategory)
 
 // 异常处理

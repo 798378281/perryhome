@@ -41,9 +41,6 @@
               prop="desc"
               label="描述"/>
             <el-table-column
-              prop="create_date"
-              label="创建时间"/>
-            <el-table-column
               label="操作">
               <template slot-scope="">
                 <el-button
@@ -82,18 +79,20 @@
         label-width="80px">
         <el-form-item label="分类名称" prop="name">
           <el-input
+            v-model="form.name"
             size="small"
             placeholder="请输入分类名称"/>
         </el-form-item>
         <el-form-item label="分类描述" prop="desc">
           <el-input
+            v-model="form.desc"
+            :rows="3"
             size="small"
             type="textarea"
-            :rows="3"
             placeholder="请输入分类描述"/>
         </el-form-item>
         <el-form-item>
-          <el-button size="small" type="primary" @click="showDialog = false">{{ isEdit ? '编辑' : '保存'}}</el-button>
+          <el-button size="small" type="primary" @click="addCategory">{{ isEdit ? '编辑' : '保存'}}</el-button>
           <el-button size="small" @click="showDialog = false">取消</el-button>
         </el-form-item>
       </el-form>
@@ -105,6 +104,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { Form } from 'element-ui'
 import { IValidationRules, IForm } from '@/types/common'
+import api, { Category } from '@/api/category'
 
 @Component({
   name: 'CategoryManage'
@@ -133,14 +133,11 @@ export default class CategoryManage extends Vue {
    */
   rules: IValidationRules = {}
 
-  data = [
-    {
-      id: '1',
-      name: '一号分类已就位',
-      desc: '.....',
-      create_date: 123123
-    }
-  ]
+  data: Category[] = []
+
+  mounted () {
+    this.fetchTableData()
+  }
 
   add () {
     this.isEdit = false
@@ -150,6 +147,20 @@ export default class CategoryManage extends Vue {
   edit () {
     this.isEdit = true
     this.showDialog = true
+  }
+
+  async fetchTableData (reset?: boolean) {
+    const { data } = await api.getCategoryList()
+    this.data = data
+    console.log(data)
+  }
+
+  async addCategory () {
+    const { name, desc } = this.form
+    await api.addCategory({ name, desc })
+    this.$message.success('添加成功')
+    this.fetchTableData(true)
+    this.showDialog = false
   }
 
 }

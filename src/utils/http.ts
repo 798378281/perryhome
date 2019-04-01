@@ -14,6 +14,8 @@ function handleHttpInterceptors (http: AxiosInstance) {
   }, (err: AxiosError) => {
     console.log('requestError', err)
   })
+
+  return http
 }
 
 
