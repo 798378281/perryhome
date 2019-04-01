@@ -3,7 +3,8 @@ const modal = require('../modal/journal-modal')
 const service = {
 
   getInfo: (id) => {
-    return modal.findById(id)
+    console.log(modal)
+    return modal.findByPk(id)
   },
 
   getList: (offset, limit) => {

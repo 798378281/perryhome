@@ -1,10 +1,10 @@
 const express = require('express')
-
 const router = express.Router()
+
+const service = require('../service/journal_service')
 
 router.use((req, res, next) => {
   console.log(`The journal API begin: [Time: ${new Date()}]`)
-  console.log(`The params by request is:`, req)
   next()
 })
 
@@ -12,8 +12,14 @@ router.use((req, res, next) => {
  * 获取日志详情
  * [GET]/journal/:id
  */
-router.get('/journal/:id', (req, res, next) => {
-  res.status(200).send('GET')
+router.get('/journal/:id', async (req, res, next) => {
+  let id = req.params.id
+  try {
+    const { dataValues } = await service.getInfo(id)
+  } catch (err) {}
+  
+  console.log('data:', dataValues)
+  res.status(200).send(dataValues)
   next()
 })
 
@@ -21,7 +27,7 @@ router.get('/journal/:id', (req, res, next) => {
  * 分页查询列表
  * [POST]/journal
  */
-router.post('/journal', (req, res, next) => {
+router.post('/journal', async (req, res, next) => {
   res.status(200).send('POST')
   next()
 })

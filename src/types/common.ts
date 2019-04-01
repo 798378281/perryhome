@@ -1,3 +1,4 @@
+
 /**
  * 下拉选项
  */
@@ -35,4 +36,23 @@ export interface IValidationRules {
  */
 export interface IForm {
   [key: string]: any
+}
+
+/**
+ * 菜单
+ */
+export interface INav {
+  index: string,
+  name: string,
+  icon: string,
+  path?: string,
+  childrens?: INav[]
+}
+
+/**
+ * 面包屑
+ */
+export interface IBreadcrumb {
+  name: string,
+  path?: string
 }
