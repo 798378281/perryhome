@@ -31,38 +31,10 @@
         </div>
 
         <div class="panel__body">
-          <el-table
+          <PTable
+            :columns="col"
             :data="data"
-            border>
-            <el-table-column
-              prop="name"
-              label="分类名称"/>
-            <el-table-column
-              prop="desc"
-              label="描述"/>
-            <el-table-column
-              label="操作">
-              <template slot-scope="">
-                <el-button
-                  size="mini"
-                  type="primary"
-                  @click="edit">
-                  <i class="el-icon-edit"></i>
-                  编辑
-                </el-button>
-                <el-button
-                  size="mini"
-                  type="danger">
-                  <i class="el-icon-delete"></i>
-                  删除
-                </el-button>
-              </template>
-            </el-table-column>
-          </el-table>
-
-          <el-pagination
-            layout="prev, pager, next"
-            :total="20"/>
+            type="index"/>
         </div>
       </div>
     </div>
@@ -103,11 +75,16 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Form } from 'element-ui'
-import { IValidationRules, IForm } from '@/types/common'
+import { IValidationRules, IForm, TableCloumn } from '@/types/common'
 import api, { Category } from '@/api/category'
+import PTable from '@/components/ptable/index.vue'
+
 
 @Component({
-  name: 'CategoryManage'
+  name: 'CategoryManage',
+  components: {
+    PTable
+  }
 })
 export default class CategoryManage extends Vue {
 
@@ -135,6 +112,55 @@ export default class CategoryManage extends Vue {
 
   data: Category[] = []
 
+  get col (): TableCloumn[] {
+    return [
+      {
+        prop: 'name',
+        lable: '分类名称'
+      },
+      {
+        prop: 'desc',
+        lable: '描述'
+      },
+      {
+        lable: '操作',
+        render: (h: any, params: any) => {
+          let self = this
+          let editBtn = h('el-button', {
+            props: {
+              size: 'mini',
+              type: 'primary'
+            },
+            nativeOn: {
+              click: () => {
+                self.edit()
+              }
+            }
+          }, [
+            h('i', { 'class': 'el-icon-delete'}),
+            '编辑'
+          ])
+
+          let deleteBtn = h('el-button', {
+            props: {
+              size: 'mini',
+              type: 'danger'
+            },
+            nativeOn: {
+              click: () => {
+                self.deleteCategory(params.row.id)
+              }
+            }
+          }, [
+            h('i', { 'class': 'el-icon-delete'}),
+            '删除'
+          ])
+          return h('div', [editBtn, deleteBtn])
+        }
+      }
+    ]
+  }
+
   mounted () {
     this.fetchTableData()
   }
@@ -150,7 +176,7 @@ export default class CategoryManage extends Vue {
   }
 
   async fetchTableData (reset?: boolean) {
-    const { data } = await api.getCategoryList()
+    const { data: { data } } = await api.getCategoryList()
     this.data = data
     console.log(data)
   }
@@ -161,6 +187,16 @@ export default class CategoryManage extends Vue {
     this.$message.success('添加成功')
     this.fetchTableData(true)
     this.showDialog = false
+  }
+
+  async deleteCategory (id: string) {
+    try {
+      await api.deleteCategory(id)
+      this.$message.success('删除成功')
+    } catch (err) {
+      this.$message.error('删除失败')
+      console.log(err)
+    }
   }
 
 }

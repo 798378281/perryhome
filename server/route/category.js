@@ -3,16 +3,11 @@ const router = express.Router()
 
 const service = require('../service/category_service')
 
-router.use((req, res, next) => {
-  console.log(`The category API begin: [Time: ${new Date()}]`)
-  next()
-})
-
 /**
  * 获取详情
  * [GET]/category/:id
  */
-router.get('/category/:id', async (req, res, next) => {
+router.get('/category/detail/:id', async (req, res, next) => {
   let id = req.params.id
   try {
     const { dataValues } = await service.getInfo(id)
@@ -27,7 +22,7 @@ router.get('/category/:id', async (req, res, next) => {
  * 分页查询列表
  * [POST]/category
  */
-router.post('/category', async (req, res, next) => {
+router.post('/category/list', async (req, res, next) => {
   try {
     const { rows } = await service.getList(0, 10)
     let result = rows.map(item => {
@@ -94,7 +89,7 @@ router.post('/category/add', async (req, res, next) => {
  * 修改日志
  * [PUT]/category/:id
  */
-router.put('category', (req, res, next) => {
+router.post('category/update', (req, res, next) => {
   res.status(200).send('PUT')
   next()
 })
@@ -103,7 +98,8 @@ router.put('category', (req, res, next) => {
  * 删除日志
  * [DELETE]/category/:id
  */
-router.delete('category/:id', (req, res, next) => {
+router.get('category/delete/:id', (req, res, next) => {
+  console.log(req)
   res.status(200).send('DELETE')
   next()
 })

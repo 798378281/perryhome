@@ -1,4 +1,5 @@
 import { AxiosPromise } from 'axios'
+import { VNode, CreateElement } from 'vue'
 
 /**
  * 下拉选项
@@ -99,3 +100,17 @@ export type ApiListData<T> = ApiResponse<{
   list: T[]; // 列表
   count: number; // 数量
 }>
+
+
+// Render函数类型
+export interface IRenderFunction {
+  (h: CreateElement, params: any): VNode
+}
+
+// 表格咧类型
+export interface TableCloumn {
+  prop?: string,
+  lable: string,
+  width?: string,
+  render?: IRenderFunction
+}

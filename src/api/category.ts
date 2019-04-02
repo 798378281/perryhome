@@ -9,23 +9,22 @@ export interface Category {
 
 export default {
   getCategoryList () {
-    return http.post(`${API_SERVER}api/category`)
+    return http.post(`${API_SERVER}/api/category/list`)
   },
 
   getCategoryInfo (id: string) {
-    return http.get(`${API_SERVER}api/category/${id}`)
+    return http.get(`${API_SERVER}/api/category/detail/${id}`)
   },
 
   updateCategory (params: Category) {
-    return http.put(`${API_SERVER}api/category`, params)
+    return http.post(`${API_SERVER}/api/category/update`, params)
   },
 
   deleteCategory (id: string) {
-    return http.delete(`${API_SERVER}api/category/${id}`)
+    return http.delete(`${API_SERVER}/api/category/delete/${id}`)
   },
 
   addCategory (params: Category) {
-    console.log('params:', params)
-    return http.post(`${API_SERVER}api/category/add`, params)
+    return http.post(`${API_SERVER}/api/category/add`, params)
   }
 }

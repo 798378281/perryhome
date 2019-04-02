@@ -19,6 +19,8 @@
     "no-import-side-effect": false,
     "linebreak-style": false,
     "member-access": false,
+    "callable-types": false,
+    "no-this-assignment":false,
 		"no-implicit-dependencies": [
 			true,
 			["@/api", "@/assets", "@/components", "@/config", "@/consts",  "@/styles", "@/views", "@/utils", "@/types", "@/store", "@/routes", "@/apps", "@/modules", "@/mixins"]
