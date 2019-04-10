@@ -18,6 +18,9 @@ const SystemMetaData = () => import(/* webpackChunkName: "apps" */ '../views/app
 const SystemMetaDataCategory = () => import(/* webpackChunkName: "apps" */ '../views/apps/system/metadata/category-list.vue')
 const SystemMetaDataTag = () => import(/* webpackChunkName: "apps" */ '../views/apps/system/metadata/tag-list.vue')
 
+
+const Test = () => import(/* webpackChunkName: "apps" */ '../views/test/index.vue')
+
 Vue.use(Router)
 
 export default new Router({
@@ -97,6 +100,11 @@ export default new Router({
               ]
             }
           ]
+        },
+        {
+          path: 'test',
+          name: RouteName.TEST,
+          component: Test
         }
       ]
     }

@@ -4,6 +4,7 @@ const app = express()
 const journalRoute = require('./route/journal')
 const category = require('./route/category')
 const logger = require('morgan')
+const uploadApi = require('./route/upload')
 
 // 跨域中间件
 const allowCors = function (req, res, next) {
@@ -18,9 +19,11 @@ app.use(allowCors)
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(express.bodyParser({ uploadDir: './upload_dir'}))
 
 app.use('/api/', journalRoute)
 app.use('/api/', category)
+app.use('/api/', uploadApi)
 // app.use(journalCategory)
 
 // 异常处理

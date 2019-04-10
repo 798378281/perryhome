@@ -12,13 +12,11 @@ router.use((req, res, next) => {
  * 获取日志详情
  * [GET]/journal/:id
  */
-router.get('/journal/:id', async (req, res, next) => {
+router.get('/journal/detail/:id', async (req, res, next) => {
   let id = req.params.id
   try {
     const { dataValues } = await service.getInfo(id)
   } catch (err) {}
-  
-  console.log('data:', dataValues)
   res.status(200).send(dataValues)
   next()
 })
@@ -27,7 +25,7 @@ router.get('/journal/:id', async (req, res, next) => {
  * 分页查询列表
  * [POST]/journal
  */
-router.post('/journal', async (req, res, next) => {
+router.post('/journal/list', async (req, res, next) => {
   res.status(200).send('POST')
   next()
 })
@@ -36,16 +34,43 @@ router.post('/journal', async (req, res, next) => {
  * 添加
  * [POST]/journal/add
  */
-router.post('/journal/add', (req, res, next) => {
-  res.status(200).send('POST')
-  next()
+router.post('/journal/add', async (req, res, next) => {
+  console.log(req)
+  const {title, category, desc, content} = req.body
+  if (!title || !category || !desc) {
+    res.status(400).send({
+      data: null,
+      code: 400,
+      message: '缺少必要数据'
+    })
+    next()
+  } else {
+    try {
+      await service.insert({ title, category, desc, content })
+      res.status(200).send({
+        data: null,
+        code: 200,
+        message: '添加成功'
+      })
+      next()
+    } catch (err) {
+      console.log('err:', err)
+      res.status(500).send({
+        data: null,
+        code: 500,
+        message: err
+      })
+      next()
+    }
+  }
+  
 })
 
 /**
  * 修改日志
  * [PUT]/journal/:id
  */
-router.put('journal/:id', (req, res, next) => {
+router.post('journal/update', (req, res, next) => {
   res.status(200).send('PUT')
   next()
 })
@@ -54,9 +79,10 @@ router.put('journal/:id', (req, res, next) => {
  * 删除日志
  * [DELETE]/journal/:id
  */
-router.delete('journal/:id', (req, res, next) => {
+router.delete('journal/delete/:id', (req, res, next) => {
   res.status(200).send('DELETE')
   next()
 })
+
 
 module.exports = router

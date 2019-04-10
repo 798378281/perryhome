@@ -13,3 +13,6 @@ export const SYSTEM = 'SYSTEM'
 export const SYSTEM_METADATA = 'SYSTEM_METADATA'
 export const SYSTEM_METADATA_CATEGORY = 'SYSTEM_METADATA_CATEGORY'
 export const SYSTEM_METADATA_TAG = 'SYSTEM_METADATA_TAG'
+
+// 测试页面
+export const TEST = 'TEST'
