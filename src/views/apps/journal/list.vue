@@ -40,25 +40,18 @@
             @click.native="jumpAdd">添加</el-button>
         </div>
         <div class="panel__body">
-          <Media
+          <!-- <Media
             title="你只管写就是了，剩下的交给时间"
             content="午夜刚过，我也刚关掉电脑钻进被窝。 小时候就喜欢写点东西，慢慢的就养成了写日记的习惯，每天要不写点什么，感觉一天没完整的结束一样"
             :tags="['1123', '1123', '1123', '1123', '1123', '1123']"
             @click.native="jumpDetils(1)">
             <div class="img"></div>
-          </Media>
+          </Media> -->
 
           <Media
             title="这个是标题"
             content="这个是内容............"
-            :tags="['1123', '1123', '1123', '1123', '1123', '1123']">
-            <div class="img"></div>
-          </Media>
-
-          <Media
-            title="这个是标题"
-            content="这个是内容............"
-            :tags="['1123', '1123', '1123', '1123', '1123', '1123']">
+            :tags="['人间词话']">
           </Media>
         </div>
 

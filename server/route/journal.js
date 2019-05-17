@@ -35,7 +35,6 @@ router.post('/journal/list', async (req, res, next) => {
  * [POST]/journal/add
  */
 router.post('/journal/add', async (req, res, next) => {
-  console.log(req)
   const {title, category, desc, content} = req.body
   if (!title || !category || !desc) {
     res.status(400).send({
